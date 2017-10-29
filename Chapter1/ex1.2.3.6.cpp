@@ -1,18 +1,6 @@
 #include <cstdio>
-bool binary_check(int *arr, int key, int first, int last) {
-    int mid;
-    while (first <= last) {
-        mid = (first + last) / 2;
-        if (arr[mid] == key) {
-            return true;
-        } else if (arr[mid] < key) {
-            first = mid + 1;
-        } else if (arr[mid] > key) {
-            last = mid - 1;
-        }
-    }
-    return false;
-}
+#include <algorithm>
+using namespace std;
 int N, x;
 int arr[1000001];
 int main() {
@@ -21,7 +9,8 @@ int main() {
         scanf("%d", &arr[i]);
     }
     scanf("%d", &x);
-    if (binary_check(arr, x, 0, N-1)) {
+    sort(arr, arr+N);
+    if (binary_search(arr, arr+N, x)) {
         printf("Exists");
     } else {
         printf("Doesn't exist");
